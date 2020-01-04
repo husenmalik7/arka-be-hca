@@ -21,21 +21,21 @@ module.exports = {
         console.log(page);
 
 
-
+        
         var q_NameOrSkill = '';
         var q_Sort = '';
         var q_Limit = '';
 
 
         if (typeof skill != 'undefined' && typeof name != 'undefined'){
-            q_NameOrSkill = `where name like '%${name}%' and skill like '%${skill}%'`;
+            q_NameOrSkill = `and name like '%${name}%' and skill like '%${skill}%'`;
         } else {
             if (typeof name != 'undefined'){
-                q_NameOrSkill = `where name like '%${name}%'`;
+                q_NameOrSkill = `and name like '%${name}%'`;
             }   
     
             if (typeof skill != 'undefined'){
-                q_NameOrSkill = `where skill like '%${skill}%'`;
+                q_NameOrSkill = `and skill like '%${skill}%'`;
             }
         }
 
@@ -69,12 +69,9 @@ module.exports = {
             }
         }
 
-        
-        
-
 
         return new Promise ((resolve, reject) => {
-            db.query(`select * from engineer ${q_NameOrSkill} ${q_Sort} ${q_Limit}`
+            db.query(`select * from engineer where id_company = 0 ${q_NameOrSkill} ${q_Sort} ${q_Limit}`
 
             , function(err, response){
                 if (!err){
