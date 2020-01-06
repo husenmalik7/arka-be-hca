@@ -12,6 +12,15 @@ Router.put('/:id_engineer', controller.putEngineer);
 Router.delete('/:id_engineer', controller.deleteEngineer);
 Router.get('/:id_engineer',  controller.getEngineerById);
 
+Router.get('/:id_engineer/project',  controller.    );
+
+
+
+
+
+
+// select * from engineer INNER join company on engineer.id_company = company.id_company where engineer.id_engineer = 60
+
 
 
 

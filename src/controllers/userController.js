@@ -23,6 +23,8 @@ module.exports = {
             const id_user = responseQuery[0].id_user
             const role = responseQuery[0].role
             const password_db = responseQuery[0].password; //use array index 0 or anything, cause this response type is array
+            const id_company = responseQuery[0].id_company;
+            const id_engineer = responseQuery[0].id_engineer;
             
             const compareresult = body.password.localeCompare(password_db); //comparing password_input and password in database 
             if ( compareresult == 0) { //zero mean has same value
@@ -37,8 +39,9 @@ module.exports = {
                             email,
                             token,
                             id_user,
-                            role
-                            
+                            role,
+                            id_company,
+                            id_engineer
                         }
                          })
                 });

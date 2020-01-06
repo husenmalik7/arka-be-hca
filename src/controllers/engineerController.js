@@ -16,6 +16,14 @@ module.exports = {
         .catch(err=> { console.log(err) });
     },
 
+    getProjectCompanyByIdEngineer: (req, res) => {
+        let params = req.params.id_engineer;
+
+        model.getProjectCompanyByIdEngineer(params)
+        .then(response => { res.json({  status:200, response  }); res.status(200)   })
+        .catch(err => {   console.log(400); res.status(400).json({ status:400, message: 'error'  })   })
+    },
+
 
 
     getEngineerById: (req, res) => {
@@ -56,14 +64,13 @@ module.exports = {
 
     putEngineer: function(req, res) {
         let params = req.params.id_engineer;
-        let { id_company, id_user, name, description, skill, location, dateofbirth, showcase, datecreated, dateupdated } = req.body;
-        const body = { id_company, id_user, name, description, skill, location, dateofbirth, showcase, datecreated, dateupdated };
+        let { id_company, id_user, name, description, skill, location, dateofbirth, showcase, datecreated, dateupdated, total_project, total_project_done, hire_status } = req.body;
+        const body = { id_company, id_user, name, description, skill, location, dateofbirth, showcase, datecreated, dateupdated, total_project, total_project_done, hire_status };
 
         model.putEngineer(body, params)
         .then(response=> { res.json({ status:200, message: 'success edit engineer', body }) })
         .catch(err=> { console.log(400); res.status(400).json({ status:400, message: 'error'}) })
     }, 
-
 
 
 }

@@ -4,9 +4,10 @@ const auth = require('../helper/auth');
 
 const Router = express.Router();
 
-Router.get('/', auth.checkToken, controller.getAllCompany);
+Router.get('/', controller.getAllCompany);
 // Router.get('/',  controller.getAllCompany);
 Router.post('/', controller.postCompany);
+
 Router.put('/:id_company', controller.putCompany);
 Router.delete('/:id_company', controller.deleteCompany);
 

@@ -64,8 +64,8 @@ module.exports = {
             if (typeof page != 'undefined'){
                 q_Limit = `limit 10 offset ${limit2}`
             } else {
-                // q_Limit = `limit 10 offset 0`;
-                q_Limit = ``;
+                q_Limit = `limit 10 offset 0`;
+                // q_Limit = ``;
             }
         }
 
@@ -120,6 +120,9 @@ module.exports = {
         });
     },
 
+
+   
+
     deleteEngineer: function(params){
         return new Promise(function(resolve, reject) {
             db.query('delete from engineer where id_engineer = ?', [params], function(err, result) {
@@ -143,6 +146,20 @@ module.exports = {
                 }
             });
         });
+    },
+
+
+    getProjectCompanyByIdEngineer: function(params) {
+        return new Promise( function(resolve, reject) {
+            db.query('select * from engineer INNER join company on engineer.id_company = company.id_company where engineer.id_engineer = ?', [params], function(err, result) {
+                // select * from engineer INNER join company on engineer.id_company = company.id_company where engineer.id_engineer = 60
+                if (!err){
+                    resolve(result);
+                } else {
+                    reject(err);
+                }
+            });
+        })
     }
 
 }
