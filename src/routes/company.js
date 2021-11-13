@@ -1,0 +1,11 @@
+const express = require("express");
+const controller = require("../controllers/company");
+
+const Router = express.Router();
+
+Router.get("/testGet", controller.testGet);
+Router.get("/", controller.getAllCompany);
+Router.get("/:id", controller.getCompanyById);
+Router.post("/", controller.postCompany);
+
+module.exports = Router;
