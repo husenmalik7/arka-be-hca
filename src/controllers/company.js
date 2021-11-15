@@ -24,13 +24,10 @@ module.exports = {
   },
 
   getCompanyById: (req, res) => {
-    let id = req.params.id;
-
-    console.log("idnya adalah");
-    console.log(id);
+    let params = req.params.id;
 
     model
-      .getCompanyById(id)
+      .getCompanyById(params)
       .then((response) => {
         res.json({
           status: 200,
@@ -54,6 +51,29 @@ module.exports = {
         res.json({
           status: 200,
           msg: "sucess post company",
+          // data: response,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+
+  putCompany: (req, res) => {
+    let params = req.params.id;
+
+    let { name, description } = req.body;
+    let body = {
+      name,
+      description,
+    };
+
+    model
+      .putCompany(body, params)
+      .then((response) => {
+        res.json({
+          status: 200,
+          msg: "sucess put company",
           // data: response,
         });
       })

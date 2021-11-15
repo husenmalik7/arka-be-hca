@@ -44,4 +44,27 @@ module.exports = {
       );
     });
   },
+
+  putCompany: (body, params) => {
+    return new Promise((resolve, reject) => {
+      console.log(body);
+
+      //date updated update too
+
+      db.query(
+        // `UPDATE company SET name = ${body.name}, description = ${body.description} WHERE id = ${params}`,
+        "UPDATE company SET name = $1, description = $2 WHERE id = $3",
+        // "UPDATE company SET ? WHERE id = ?",
+        [body.name, body.description, params],
+        // [body, params],
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
 };
