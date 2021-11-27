@@ -13,6 +13,21 @@ module.exports = {
     });
   },
 
+  findCompanyByEmail: (email) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `SELECT * FROM company WHERE EMAIL ILIKE '${email}'`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
+
   getCompanyById: (params) => {
     return new Promise((resolve, reject) => {
       db.query(
@@ -32,8 +47,24 @@ module.exports = {
   postCompany: (body) => {
     return new Promise((resolve, reject) => {
       db.query(
-        "INSERT INTO company (name, description) VALUES ($1, $2)",
-        [body.name, body.description],
+        "INSERT INTO company (name, description, email, password) VALUES ($1, $2, $3, $4)",
+        [body.name, body.description, body.email, body.password],
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
+
+  registerCompany: (body) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        "INSERT INTO company (name, description, email, password) VALUES ($1, $2, $3, $4)",
+        [body.name, body.description, body.email, body.password],
         (error, result) => {
           if (!error) {
             resolve(result);
