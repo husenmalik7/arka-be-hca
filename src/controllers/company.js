@@ -1,4 +1,5 @@
 const model = require("../models/company");
+const bcrypt = require("bcryptjs");
 
 module.exports = {
   testGet: (_, res) => {
@@ -65,8 +66,10 @@ module.exports = {
     let name = req.body.name;
     let description = req.body.description;
     let email = req.body.email;
+    let hashPassword = bcrypt.hashSync(req.body.password);
 
-    let body = { name, description, email, password: req.body.password };
+    let body = { name, description, email, password: hashPassword };
+    console.log(body);
 
     let isEmailSame = await model
       .findCompanyByEmail(body.email)
