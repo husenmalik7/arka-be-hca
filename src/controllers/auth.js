@@ -32,7 +32,7 @@ module.exports = {
             id: response.rows[0].id,
           },
           JWT_PRIVATE_KEY,
-          { expiresIn: "1m" }
+          { expiresIn: "1h" }
         );
 
         console.log("login success");
