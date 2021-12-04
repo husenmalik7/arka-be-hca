@@ -1,4 +1,5 @@
 const model = require("../models/engineer");
+const bcrypt = require("bcryptjs");
 
 module.exports = {
   registerEngineer: async (req, res) => {
@@ -6,12 +7,13 @@ module.exports = {
     let description = req.body.description;
     let email = req.body.email;
     let location = req.body.location;
+    let hashPassword = bcrypt.hashSync(req.body.password);
 
     let body = {
       name,
       description,
       email,
-      password: req.body.password,
+      password: hashPassword,
       location,
     };
 
