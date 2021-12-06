@@ -38,4 +38,19 @@ module.exports = {
       );
     });
   },
+
+  getEngineerById: (params) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `SELECT * FROM engineer WHERE id = ${params}`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
 };

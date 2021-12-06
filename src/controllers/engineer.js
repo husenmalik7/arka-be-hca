@@ -50,4 +50,22 @@ module.exports = {
         console.log(err);
       });
   },
+
+  getEngineerById: (req, res) => {
+    let params = req.params.id;
+
+    model
+      .getEngineerById(params)
+      .then((response) => {
+        console.log("success get engineer by id");
+        res.json({
+          status: 200,
+          msg: "success",
+          data: response.rows,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
