@@ -53,4 +53,19 @@ module.exports = {
       );
     });
   },
+
+  getSkillsEngineerById: (params) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `SELECT * FROM skill WHERE engineer_id = ${params}`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
 };

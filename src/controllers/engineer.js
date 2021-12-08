@@ -51,21 +51,42 @@ module.exports = {
       });
   },
 
-  getEngineerById: (req, res) => {
+  getEngineerById: async (req, res) => {
     let params = req.params.id;
 
-    model
+    let getEngineerResult = await model
       .getEngineerById(params)
       .then((response) => {
         console.log("success get engineer by id");
-        res.json({
-          status: 200,
-          msg: "success",
-          data: response.rows,
-        });
+        return response.rows[0];
       })
       .catch((error) => {
         console.log(error);
+        return error;
       });
+
+    let getSkillsResult = await model
+      .getSkillsEngineerById(params)
+      .then((response) => {
+        console.log("success get skill");
+        console.log(response.rows);
+        return response.rows;
+      })
+      .catch((error) => {
+        console.log(error);
+        return error;
+      });
+
+    let finalResult = { ...getEngineerResult };
+    finalResult = {
+      ...getEngineerResult,
+      skills: [...getSkillsResult],
+    };
+
+    res.json({
+      status: 200,
+      msg: "success",
+      data: finalResult,
+    });
   },
 };
