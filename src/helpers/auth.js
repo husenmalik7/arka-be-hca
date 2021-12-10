@@ -17,7 +17,15 @@ module.exports = {
     jwt.verify(token, secretkey, (err, user) => {
       if (err) {
         console.log(err);
-        return res.sendStatus(403);
+        let msg = "token is expired or false";
+        console.log(msg);
+
+        return res.json({
+          status: 403,
+          msg,
+        });
+
+        // return res.sendStatus(403);
       }
       console.log(user);
       req.user = user;
