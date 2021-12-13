@@ -15,7 +15,7 @@ module.exports = {
       .then((response) => {
         res.json({
           status: 200,
-          msg: "sucess",
+          msg: "success",
           data: response.rows,
         });
       })
