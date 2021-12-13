@@ -89,4 +89,15 @@ module.exports = {
       data: finalResult,
     });
   },
+
+  getAllEngineer: (_, res) => {
+    model
+      .getAllEngineer()
+      .then((response) => {
+        res.json({ status: 200, msg: "success", data: response.rows });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };

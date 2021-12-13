@@ -11,5 +11,6 @@ Router.post("/register", controller.registerEngineer);
 Router.post("/login", authController.login);
 
 Router.get("/:id", auth.authentication, controller.getEngineerById);
+Router.get("/", controller.getAllEngineer);
 
 module.exports = Router;
