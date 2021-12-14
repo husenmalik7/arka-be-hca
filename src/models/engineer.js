@@ -80,4 +80,19 @@ module.exports = {
       });
     });
   },
+
+  getLimitEngineer: (startLimit, resultsPerPage) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `SELECT * FROM engineer LIMIT ${resultsPerPage} OFFSET ${startLimit}`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
 };

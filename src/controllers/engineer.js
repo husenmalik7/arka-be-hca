@@ -90,11 +90,43 @@ module.exports = {
     });
   },
 
-  getAllEngineer: (_, res) => {
+  getAllEngineer: (req, res) => {
     model
       .getAllEngineer()
-      .then((response) => {
-        res.json({ status: 200, msg: "success", data: response.rows });
+      .then(async (response) => {
+        let resultsPerPage = 4;
+        let totalOfResults = response.rows.length;
+        let numOfPages = Math.ceil(totalOfResults / resultsPerPage);
+
+        let page = req.query.page ? Number(req.query.page) : 1;
+
+        if (page > numOfPages) {
+          return res.redirect(
+            "/engineer?page=" + encodeURIComponent(numOfPages)
+          );
+        } else if (page < 1) {
+          return res.redirect("/engineer?page=" + encodeURIComponent("1"));
+        }
+
+        let startLimit = (page - 1) * resultsPerPage;
+
+        let arrLimit = await model
+          .getLimitEngineer(startLimit, resultsPerPage)
+          .then((response) => {
+            return response.rows;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+        res.json({
+          status: 200,
+          msg: "success",
+
+          page,
+          numOfPages,
+          data: arrLimit,
+        });
       })
       .catch((error) => {
         console.log(error);
