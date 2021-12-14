@@ -94,7 +94,7 @@ module.exports = {
     model
       .getAllEngineer()
       .then(async (response) => {
-        let resultsPerPage = 4;
+        let resultsPerPage = 5;
         let totalOfResults = response.rows.length;
         let numOfPages = Math.ceil(totalOfResults / resultsPerPage);
 
