@@ -43,6 +43,7 @@ module.exports = {
           data: {
             id: response.rows[0].id,
             email: response.rows[0].email,
+            name: response.rows[0].name,
             token,
           },
         });
