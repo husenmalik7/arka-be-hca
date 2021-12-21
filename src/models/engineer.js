@@ -71,13 +71,16 @@ module.exports = {
 
   getAllEngineer: () => {
     return new Promise((resolve, reject) => {
-      db.query("SELECT * FROM engineer", (error, result) => {
-        if (!error) {
-          resolve(result);
-        } else {
-          reject(error);
+      db.query(
+        `SELECT * FROM engineer WHERE status = 'open'`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
         }
-      });
+      );
     });
   },
 
