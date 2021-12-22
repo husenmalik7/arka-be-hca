@@ -98,4 +98,34 @@ module.exports = {
       );
     });
   },
+
+  updateEngineerStatus: (id) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `UPDATE engineer SET status = 'close' WHERE id = ${id}`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
+
+  postService: (id_company, id_engineer) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `INSERT INTO service (company_id, engineer_id, status) VALUES (${id_company},${id_engineer}, 'pending')`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
 };

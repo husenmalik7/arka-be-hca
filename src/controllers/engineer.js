@@ -132,4 +132,39 @@ module.exports = {
         console.log(error);
       });
   },
+
+  /**
+   *
+   * what if case
+   * what if company hire one engineer (udin), and his status become 'close'. And he not yet accept the offer. so the other comp cannot see him
+   */
+  hireEngineer: async (req, res) => {
+    let id_company = req.body.id_company;
+    let id_engineer = req.body.id_engineer;
+
+    // update engineer table
+    let _updateEngineerStatus = await model
+      .updateEngineerStatus(id_engineer)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    // post service table
+    let _postService = await model
+      .postService(id_company, id_engineer)
+      .then((response) => {
+        console.log(response);
+
+        res.json({
+          status: 200,
+          msg: "success hire engineer",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
