@@ -24,6 +24,25 @@ module.exports = {
       });
   },
 
+  getEngineerList: (req, res) => {
+    let company_id = req.body.company_id;
+
+    console.log({ company_id });
+
+    model
+      .getEngineerList(company_id)
+      .then((response) => {
+        res.json({
+          status: 200,
+          msg: "success get engineer list",
+          data: response.rows,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+
   getCompanyById: (req, res) => {
     let params = req.params.id;
 

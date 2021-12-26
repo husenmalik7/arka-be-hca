@@ -13,6 +13,21 @@ module.exports = {
     });
   },
 
+  getEngineerList: (company_id) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `SELECT * FROM engineer FULL OUTER JOIN service ON engineer.id = service.engineer_id WHERE service.company_id = ${company_id}`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
+
   findCompanyByEmail: (email) => {
     return new Promise((resolve, reject) => {
       db.query(
