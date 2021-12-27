@@ -8,7 +8,7 @@ const authController = require("../controllers/auth");
 const Router = express.Router();
 
 Router.get("/testGet", controller.testGet);
-Router.get("/engineer-list", controller.getEngineerList);
+Router.get("/engineerList", controller.getEngineerList);
 
 Router.get("/", controller.getAllCompany);
 Router.get("/:id", auth.authentication, controller.getCompanyById);
