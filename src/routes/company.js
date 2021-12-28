@@ -9,6 +9,7 @@ const Router = express.Router();
 
 Router.get("/testGet", controller.testGet);
 Router.post("/engineerList", controller.getEngineerList);
+Router.post("/engineerList/project", controller.getEngineerProject);
 
 Router.get("/", controller.getAllCompany);
 Router.get("/:id", auth.authentication, controller.getCompanyById);

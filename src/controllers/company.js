@@ -1,4 +1,6 @@
 const model = require("../models/company");
+const modelEngineer = require("../models/engineer");
+const modelProject = require("../models/project");
 const bcrypt = require("bcryptjs");
 
 module.exports = {
@@ -41,6 +43,37 @@ module.exports = {
       .catch((err) => {
         console.log(err);
       });
+  },
+
+  getEngineerProject: async (req, res) => {
+    let engineer_id = req.body.engineer_id;
+
+    let dataEngineer = await modelEngineer
+      .getEngineerById(engineer_id)
+      .then((response) => {
+        return response.rows[0];
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    console.log(dataEngineer);
+
+    let projectEngineer = await modelProject
+      .getEngineerProject(engineer_id)
+      .then((response) => {
+        return response.rows;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    res.json({
+      status: 200,
+      msg: "success get project list",
+      data: dataEngineer,
+      dataProject: projectEngineer,
+    });
   },
 
   getCompanyById: (req, res) => {
