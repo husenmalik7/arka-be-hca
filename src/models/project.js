@@ -15,4 +15,19 @@ module.exports = {
       );
     });
   },
+
+  finishTheProject: (id) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `UPDATE project SET status = 'completed' WHERE id = ${id}`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
 };
