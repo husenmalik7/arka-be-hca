@@ -30,4 +30,21 @@ module.exports = {
       );
     });
   },
+
+  addProject: (engineer_id, project_name) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `INSERT INTO project (engineer_id, project_name, status) VALUES (${parseInt(
+          engineer_id
+        )}, '${project_name}', 'pending')`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
 };

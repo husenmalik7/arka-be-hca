@@ -7,5 +7,6 @@ const controller = require("../controllers/project");
 const Router = express.Router();
 
 Router.put("/done", controller.finishTheProject);
+Router.post("/add", controller.addProject);
 
 module.exports = Router;
