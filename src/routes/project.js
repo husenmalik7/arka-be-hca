@@ -8,5 +8,6 @@ const Router = express.Router();
 
 Router.put("/done", controller.finishTheProject);
 Router.post("/add", controller.addProject);
+Router.put("/dismiss", controller.dismissEngineer);
 
 module.exports = Router;

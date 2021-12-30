@@ -33,4 +33,49 @@ module.exports = {
         console.log(error);
       });
   },
+
+  dismissEngineer: async (req, res) => {
+    let { engineer_id, company_id } = req.body;
+
+    let _deleteProject = await model
+      .deleteProject(engineer_id)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    let _deleteEngineerList = await model
+      .deleteEngineerList(company_id, engineer_id)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    let _updateEngineerStatus = await model
+      .updateEngineerStatus(engineer_id)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    res.send({
+      status: 200,
+      msg: `success dismiss engineer`,
+    });
+
+    //delete project
+    // engineer id = 87
+
+    //dlete engineer list / service
+    // engineer id and compnay id
+
+    //set status engineer open
+    // update engineer id set status  to open
+  },
 };

@@ -47,4 +47,53 @@ module.exports = {
       );
     });
   },
+
+  deleteProject: (engineer_id) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `DELETE FROM project WHERE engineer_id = ${parseInt(engineer_id)}`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
+
+  deleteEngineerList: (company_id, engineer_id) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `DELETE FROM service WHERE company_id = ${parseInt(
+          company_id
+        )} AND engineer_id = ${parseInt(engineer_id)}`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
+
+  updateEngineerStatus: (engineer_id) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `UPDATE engineer SET status = 'open' WHERE id = ${parseInt(
+          engineer_id
+        )}`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
 };
