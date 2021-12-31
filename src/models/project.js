@@ -111,4 +111,19 @@ module.exports = {
       );
     });
   },
+
+  doTheProject: (id) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `UPDATE project SET status = 'ongoing' WHERE id = ${parseInt(id)}`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
 };

@@ -11,5 +11,6 @@ Router.post("/add", controller.addProject);
 Router.put("/dismiss", controller.dismissEngineer);
 
 Router.post("/", controller.getProjectList);
+Router.put("/do", controller.doTheProject);
 
 module.exports = Router;

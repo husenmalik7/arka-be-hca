@@ -97,4 +97,22 @@ module.exports = {
         console.log(error);
       });
   },
+
+  doTheProject: (req, res) => {
+    let id = req.body.id;
+
+    model
+      .doTheProject(id)
+      .then((response) => {
+        console.log(response);
+
+        res.send({
+          status: 200,
+          msg: "success update status project to ongoing",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
