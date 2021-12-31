@@ -128,4 +128,23 @@ module.exports = {
       );
     });
   },
+
+  putEngineer: (body) => {
+    return new Promise((resolve, reject) => {
+      console.log(body);
+
+      db.query(
+        `UPDATE engineer SET name = '${body.name}', description = '${
+          body.description
+        }', location = '${body.location}' WHERE id = ${parseInt(body.id)}`,
+        (error, result) => {
+          if (!error) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+    });
+  },
 };

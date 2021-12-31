@@ -13,6 +13,8 @@ Router.post("/login", authController.login);
 Router.get("/:id", auth.authentication, controller.getEngineerById);
 Router.get("/", controller.getAllEngineer);
 
+Router.put("/:id", controller.putEngineer);
+
 Router.post("/hire", controller.hireEngineer);
 
 module.exports = Router;

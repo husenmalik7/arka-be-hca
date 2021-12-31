@@ -167,4 +167,29 @@ module.exports = {
         console.log(error);
       });
   },
+
+  putEngineer: (req, res) => {
+    let id = req.params.id;
+
+    let { name, description, location } = req.body;
+
+    let body = {
+      id,
+      name,
+      description,
+      location,
+    };
+
+    model
+      .putEngineer(body)
+      .then((response) => {
+        res.json({
+          status: 200,
+          msg: "success put engineer",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
