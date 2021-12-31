@@ -78,4 +78,23 @@ module.exports = {
     //set status engineer open
     // update engineer id set status  to open
   },
+
+  getProjectList: (req, res) => {
+    let engineer_id = req.body.engineer_id;
+
+    model
+      .getProjectList(engineer_id)
+      .then((response) => {
+        console.log(response);
+
+        res.send({
+          status: 200,
+          msg: `success get project list`,
+          data: response.rows,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
